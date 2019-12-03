@@ -5,12 +5,7 @@
         <div class="container">
           <h1>{{ title }}</h1>
           <message v-if="message" :message="message" />
-
-          <div class="new-note">
-            <input type="text" v-model="note.title" />
-            <textarea v-model="note.descr"></textarea>
-            <button @click="addNote">New Note</button>
-          </div>
+          <new-note :note="note" @addNote="addNote"/>
           <div class="notes">
             <div class="note" v-for="(note, index) in notes" :key="index">
               <div class="note-header">
@@ -29,9 +24,11 @@
 </template>
 
 <script>
-import message from "@/components/Message";
+import message from "./components/Message";
+import NewNote from "./components/NewNote";
 export default {
   components: {
+    NewNote,
     message
   },
   data() {
