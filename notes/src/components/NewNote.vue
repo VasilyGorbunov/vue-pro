@@ -9,24 +9,27 @@
 </template>
 
 <script>
-  export default {
-    name: "NewNote",
-    props: {
-      note: {
-        type: Object,
-        required: true
-      }
-    },
-    methods: {
-      addNote () {
-        this.$emit('addNote', this.note)
-      }
+export default {
+  name: "NewNote",
+  props: {
+    note: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    addNote() {
+      this.$emit("addNote", this.note);
     }
   }
+};
 </script>
 
 <style lang="scss">
 .new-note {
   text-align: center;
+  .btn {
+    margin-top: 1rem;
+  }
 }
 </style>
