@@ -6,7 +6,7 @@
           <h1>{{ title }}</h1>
           <message v-if="message" :message="message" />
           <new-note :note="note" @addNote="addNote"/>
-          <notes :notes="notes"/>
+          <notes :notes="notes" @remove="removeNote"/>
         </div>
       </section>
     </div>
@@ -68,6 +68,9 @@ export default {
       this.message = null;
       this.note.title = "";
       this.note.descr = "";
+    },
+    removeNote(index) {
+      this.notes.splice(index, 1)
     }
   }
 };
