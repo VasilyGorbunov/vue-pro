@@ -7,6 +7,7 @@
           <new-note :note="note" @addNote="addNote" />
           <div class="note-header">
             <h1>{{ title }}</h1>
+            <search :value="search" placeholder="Find Your note" @search="search = $event"/>
             <div class="icon">
               <svg
                 :class="{active: grid}"
@@ -48,7 +49,7 @@
               </svg>
             </div>
           </div>
-          <notes :notes="notes" @remove="removeNote" :grid="grid" />
+          <notes :notes="notesFilter" @remove="removeNote" :grid="grid" />
         </div>
       </section>
     </div>
@@ -59,15 +60,18 @@
 import message from "./components/Message";
 import NewNote from "./components/NewNote";
 import notes from "./components/Notes";
+import search from "./components/Search";
 export default {
   components: {
     notes,
     NewNote,
-    message
+    message,
+    search
   },
   data() {
     return {
       title: "Notes App",
+      search: '',
       message: null,
       grid: true,
       note: {
@@ -92,6 +96,23 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    notesFilter() {
+      let array = this.notes,
+        search = this.search
+
+      if (!search) return array
+
+      search = search.trim().toLowerCase()
+      array = array.filter(function(item) {
+        if (item.title.trim().toLowerCase().indexOf(search) !== -1) {
+          return item
+        }
+      })
+
+      return array
+    }
   },
   methods: {
     addNote() {

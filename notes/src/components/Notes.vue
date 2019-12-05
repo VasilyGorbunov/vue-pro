@@ -35,6 +35,7 @@ export default {
 
 <style lang="scss">
 .notes {
+  
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,6 +62,7 @@ export default {
 }
 
 .note-header {
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
