@@ -6,7 +6,9 @@
           <span class="modal-title">{{ title }}</span>
           <span class="button-close" @click="$emit('close')">×</span>
         </div>
-        <div class="modal-body"></div>
+        <div class="modal-body">
+          <slot name="body">default body</slot>
+        </div>
       </div>
     </div>
   </transition>
